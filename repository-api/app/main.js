@@ -1,4 +1,6 @@
-var express = require('express');
+var express = require('express'),
+    cors = require('cors');
+
 require('express-namespace');
 
 var packageResources = require('./packageResources'),
@@ -8,10 +10,9 @@ var packageResources = require('./packageResources'),
 app.use(express.compress());
 app.use(express.bodyParser());
 
-app.namespace('/api', function () {
+app.namespace('/api', cors(), function () {
     packageResources(app);
 });
-
 
 app.listen(port);
 
