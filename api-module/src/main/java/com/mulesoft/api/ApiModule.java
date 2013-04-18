@@ -3,6 +3,9 @@
  */
 package com.mulesoft.api;
 
+import org.mule.api.MuleContext;
+import org.mule.api.MuleEvent;
+import org.mule.api.MuleException;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.Connect;
 import org.mule.api.annotations.Module;
@@ -13,6 +16,12 @@ import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.ConnectionException;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Processor;
+import org.mule.api.construct.FlowConstruct;
+import org.mule.api.transport.PropertyScope;
+import org.mule.construct.Flow;
+
+import javax.inject.Inject;
+import java.util.Map;
 
 /**
  * Cloud Connector
@@ -22,47 +31,25 @@ import org.mule.api.annotations.Processor;
 @Module(name="api", schemaVersion="1.0")
 public class ApiModule
 {
-    /**
-     * Configurable
-     */
-    @Configurable
-    private String myProperty;
-
-    /**
-     * Set property
-     *
-     * @param myProperty My property
-     */
-    public void setMyProperty(String myProperty)
-    {
-        this.myProperty = myProperty;
-    }
-
-    /**
-     * Get property
-     */
-    public String getMyProperty()
-    {
-        return this.myProperty;
-    }
-
-
-
-    /**
-     * Custom processor
-     *
-     * {@sample.xml ../../../doc/y-connector.xml.sample y:my-processor}
-     *
-     * @param content Content to be processed
-     * @return Some string
-     */
+    @Inject
+    MuleContext context;
     @Processor
-    public String myProcessor(String content)
-    {
-        /*
-         * MESSAGE PROCESSOR CODE GOES HERE
-         */
-
-        return content;
+    @Inject
+    public MuleEvent execute(String flow, Map<String, Object> properties, MuleEvent event) throws MuleException {
+//        event.getMessage().getInvocationProperty();
+        for(String key :  properties.keySet()){
+            event.getMessage().setProperty(key, properties.get(key), PropertyScope.INBOUND);
+        }
+        Flow flowConstruct = (Flow) context.getRegistry().lookupFlowConstruct(flow);
+        return flowConstruct.process(event);
     }
+
+    public void setContext(MuleContext context) {
+        this.context = context;
+    }
+
+    public MuleContext getContext() {
+        return context;
+    }
+
 }

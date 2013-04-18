@@ -10,7 +10,7 @@ import org.mule.tck.AbstractMuleTestCase;
 
 import org.junit.Test;
 
-public class apiModuleTest extends FunctionalTestCase
+public class ApiModuleTest extends FunctionalTestCase
 {
     @Override
     protected String getConfigResources()
