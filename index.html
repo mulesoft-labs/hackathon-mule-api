@@ -1,93 +1,176 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+    <title>flowLib</title>
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>Hackathon-mule-api by mulesoft</title>
-  </head>
+    <link rel="icon" type="image/ico" href="img/flowLib-icon.png">
 
-  <body>
-    <a id="forkme_banner" href="https://github.com/mulesoft/hackathon-mule-api">View on GitHub</a>
-    <div class="shell">
+    <!-- CSS bootstrap styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Hackathon-mule-api</h1>
-            <h2></h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]
+  -->
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/mulesoft/hackathon-mule-api/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/mulesoft/hackathon-mule-api/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+    <style type="text/css">
+        body {
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
 
+        .flowName{
+            color: #016C96;
+            margin-left: 50px;
+        }
 
-      <span class="banner-fix"></span>
+            /* Custom container */
+        .container-narrow {
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        .container-narrow > hr {
+            margin: 30px 0;
+        }
 
+        .mainLogo {
+            width: 1000px;
+        }
 
-      <section id="main_content">
-        <h3>Welcome to GitHub Pages.</h3>
+        .mavenDependency{
+            background-color: white;
+            margin-left: 60px;
+            margin-right: 60px;
+        }
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        .result{
+            background-color: #f6f6f6;
+            max-width: 700px;
+            border-radius: 10px;
+            margin: 10px auto 0 auto;
+            padding-bottom: 2em;
+            padding-top: 0.5em;
+        }
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+            /* Main marketing message and sign up button */
+        .jumbotron {
+            margin: 60px 0;
+            text-align: center;
+        }
+        .jumbotron h1 {
+            font-size: 72px;
+            line-height: 1;
+        }
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+        .searchflow {
+            font-size: 21px;
+            padding: 14px 24px;
+        }
+            /* Supporting marketing content */
+        .marketing {
+            margin: 60px 0;
+        }
+        .marketing p + h4 {
+            margin-top: 28px;
+        }
 
-<h3>Designer Templates</h3>
+            /* Lastly, apply responsive CSS fixes as necessary */
+        #footer {
+            height: 60px;
+            margin-left: -20px;
+            margin-right: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+        #footer-text{
+            text-align: center;
+        }
+    </style>
 
-<h3>Rather Drive Stick?</h3>
+    <!-- Javascript -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/flowlib.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">flowLib</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <!--<li class="active"><a href="#about">About</a></li>-->
+                    <!--<li><a href="#howItWorks">Download a flow</a></li>-->
+                    <!--<li><a href="#howItWorks">In the near future...</a></li>-->
+                    <!--<li><a href="#howItWorks">Source code &amp; contributions</a></li>-->
+                    <!--<li><a href="#howItWorks">Further reading</a></li>-->
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="container-narrow">
 
-<h3>Authors and Contributors</h3>
+    <div class="jumbotron">
+        <!--<h1>uCracker</h1>-->
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+        <img class="mainLogo" src="img/flowlib-logo.jpg"/>
+        <p class="lead">Stop your copy+paste nightmares at Mule !</p>
 
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/mulesoft">mulesoft</a> can be found on <a href="https://github.com/mulesoft/hackathon-mule-api">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
-
+        <div id="search" class="form-search">
+            <div class="input-append">
+                <input type="text" id="query" class="input-xxlarge search-query searchflow" placeholder="search a flow...">
+                <button class="btn">Search</button>
+            </div>
+        </div>
+        <hr/>
     </div>
 
-    
-  </body>
+
+    <div id="results title"></div>
+
+    <div class="results">
+        <script id="entry-template" type="text/x-handlebars-template">
+        {{#each items}}
+        <div class="result">
+        <h3 class="flowName">{{name}}</h3>
+        <dl class="dl-horizontal">
+            <dt>Version</dt>
+            <dd>{{version}}</dd>
+            <dt>Description</dt>
+            <dd>{{description}}</dd>
+            <dt>Author</dt>
+            <dd>{{author}}</dd>
+            <dt>Documentation</dt>
+            <dd>{{docsurl}}</dd>
+        </dl>
+        <pre class="mavenDependency">
+            &lt;dependency&gt;
+                &lt;groupId&gt;{{groupid}}&lt;/groupId&gt;
+                &lt;artifactId&gt;{{artifactid}}&lt;/artifactId&gt;
+                &lt;version&gt;{{version}}&lt;/version&gt;
+             &lt;/dependency&gt;
+        </pre>
+        </div>
+        <br/>
+        {{/each}}
+    </script>
+    </div>
+</div>
+
+</body>
 </html>
