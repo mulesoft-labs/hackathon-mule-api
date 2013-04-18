@@ -3,22 +3,28 @@
 <mule xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns:spring="http://www.springframework.org/schema/beans"
-      xmlns:api="http://www.mulesoft.org/schema/mule/api"
+      xmlns:flowLib="http://www.mulesoft.org/schema/mule/flowLib"
       xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-        http://www.mulesoft.org/schema/mule/api http://www.mulesoft.org/schema/mule/api/1.0/mule-api.xsd">
+        http://www.mulesoft.org/schema/mule/flowLib http://www.mulesoft.org/schema/mule/flowLib/1.0/mule-flowLib.xsd">
+
+     <spring:beans>
+         <spring:import resource="classpath:/api-config.xml"/>
+     </spring:beans>
 
     <flow name="testFlow">
-        <api:execute flow="pepe">
-            <api:properties>
-                <api:property key="prop1" value-ref="#[string:value1]"/>
-                <api:property key="prop2" value-ref="#[string:value2]"/>
-            </api:properties>
-        </api:execute>
+        <flowLib:execute flow="execute-flow-and-log">
+            <flowLib:properties>
+                <flowLib:property key="prop1" value-ref="#[string:value1]"/>
+                <flowLib:property key="flow" value-ref="#[string:my-configurable-flow]"/>
+            </flowLib:properties>
+        </flowLib:execute>
     </flow>
-    <flow name="pepe">
-        <logger level="ERROR" message="somos unos capos porque metimos #[message.inboundProperties.prop1]"/>
-    </flow>
+
+
+    <sub-flow name="my-configurable-flow">
+        <logger level="ERROR" message="I am running configurable flow"/>
+    </sub-flow>
 
 </mule>

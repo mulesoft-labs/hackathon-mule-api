@@ -6,6 +6,7 @@ package com.mulesoft.api;
 import org.mule.api.MuleContext;
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleException;
+import org.mule.api.NestedProcessor;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.Connect;
 import org.mule.api.annotations.Module;
@@ -21,28 +22,29 @@ import org.mule.api.transport.PropertyScope;
 import org.mule.construct.Flow;
 
 import javax.inject.Inject;
+
+import java.util.List;
 import java.util.Map;
 
-/**
- * Cloud Connector
- *
- * @author MuleSoft, Inc.
- */
-@Module(name="api", schemaVersion="1.0")
+
+@Module(name="flowLib", schemaVersion="1.0")
 public class ApiModule
 {
     @Inject
     MuleContext context;
+
+
     @Processor
     @Inject
-    public MuleEvent execute(String flow, Map<String, Object> properties, MuleEvent event) throws MuleException {
-//        event.getMessage().getInvocationProperty();
+    public MuleEvent execute(String flow, Map<String, Object> properties, MuleEvent event) throws Exception
+    {
         for(String key :  properties.keySet()){
             event.getMessage().setProperty(key, properties.get(key), PropertyScope.INBOUND);
         }
         Flow flowConstruct = (Flow) context.getRegistry().lookupFlowConstruct(flow);
         return flowConstruct.process(event);
     }
+
 
     public void setContext(MuleContext context) {
         this.context = context;
