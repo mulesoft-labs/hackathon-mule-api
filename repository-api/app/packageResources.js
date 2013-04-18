@@ -21,25 +21,28 @@ module.exports = function ( app ) {
         var groupId = req.params.groupId,
             artifactId = req.params.artifactId,
             version = req.params.version;
-        console.log('GET!!!');
-        res.json(repo.find(function ( entry ) {
+
+        var req2 = repo.find(function ( entry ) {
 
             return entry.groupId === groupId &&
                 entry.artifactId === artifactId &&
                 entry.version === version;
 
-        }));
+        });
+
+        res.json(req2);
     });
 
     app.post('/packages/:groupId/:artifactId/:version', function ( req, res ) {
-        repo.push(
-            Object.merge({
-                groupId: req.params.groupId,
-                artifactId: req.params.artifactId,
-                version: req.params.version
-            }, req.body)
-        );
-        res.status(200);
+        var newPackage = Object.merge({
+            groupId: req.params.groupId,
+            artifactId: req.params.artifactId,
+            version: req.params.version
+        }, req.body);
+
+        repo.push(newPackage);
+
+        res.json(newPackage);
     });
 
 

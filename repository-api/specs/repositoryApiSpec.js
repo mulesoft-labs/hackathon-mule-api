@@ -2,11 +2,11 @@ var request = require('request'),
     expect = require('chai').expect;
 
 function get( path, callback ) {
-    return request.get({url: 'http://localhost:9090' + path, json: true}, callback);
+    return request.get({url: 'http://localhost:9090/api' + path, json: true}, callback);
 }
 
 function post( path, body, callback ) {
-    return request.post({url: 'http://localhost:9090' + path, json: true, body: body}, callback);
+    return request.post({url: 'http://localhost:9090/api' + path, json: true, body: body}, callback);
 }
 
 describe('Mule Repository API', function () {
@@ -30,9 +30,9 @@ describe('Mule Repository API', function () {
         };
 
         post('/packages/testgroup/test/1.0', testPackage, function () {
-            console.log('BEFORE GET');
+
             get('/packages/testgroup/test/1.0', function ( error, response, body ) {
-                console.log('GET');
+
                 expect(body.name).to.equal(testPackage.name);
                 expect(body.description).to.equal(testPackage.description);
                 expect(body.docsUrl).to.equal(testPackage.docsUrl);
