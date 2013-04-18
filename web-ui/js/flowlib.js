@@ -5,12 +5,10 @@ $(function () {
         $searchButton = $('#search button'),
         $searchQuery = $('#search input');
 
-
     var packagesResourceUrl = 'http://hackathon-mule-repository.herokuapp.com/api/packages';
 
     function displayPackages(data) {
         $results.html(template({items: data}));
-//        $resutlsTitle.
     }
 
     function findPackages(query){
@@ -24,7 +22,7 @@ $(function () {
     }
 
 
-    findPackages().then(displayPackages);
+    //findPackages().then(displayPackages);
     $searchQuery.keydown(function (evt) {
         if (evt.keyCode === 13) {
             $searchButton.click();
