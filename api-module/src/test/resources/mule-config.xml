@@ -3,17 +3,22 @@
 <mule xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns:spring="http://www.springframework.org/schema/beans"
-      xmlns:y="http://www.mulesoft.org/schema/mule/y"
+      xmlns:api="http://www.mulesoft.org/schema/mule/api"
       xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-        http://www.mulesoft.org/schema/mule/y http://www.mulesoft.org/schema/mule/y/1.0-SNAPSHOT/mule-y.xsd">
-
-    <y:config myProperty="Some string"
-            username="xxx" password="yyy"/>
+        http://www.mulesoft.org/schema/mule/api http://www.mulesoft.org/schema/mule/api/1.0/mule-api.xsd">
 
     <flow name="testFlow">
-        <y:my-processor content="Another string"/>
+        <api:execute flow="pepe">
+            <api:properties>
+                <api:property key="prop1" value-ref="#[string:value1]"/>
+                <api:property key="prop2" value-ref="#[string:value2]"/>
+            </api:properties>
+        </api:execute>
+    </flow>
+    <flow name="pepe">
+        <logger level="ERROR" message="somos unos capos porque metimos #[message.inboundProperties.prop1]"/>
     </flow>
 
 </mule>
