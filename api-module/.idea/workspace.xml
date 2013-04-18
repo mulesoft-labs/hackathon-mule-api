@@ -7,6 +7,7 @@
     <file path="/private/tmp/api-module/src/test/resources/mule-config.xml" changelist="dd4eef7c-4c16-43c7-97dd-8e0860d17af9" time="1366293760063" ignored="false" />
     <file path="/yConnector.java" changelist="dd4eef7c-4c16-43c7-97dd-8e0860d17af9" time="1366293858309" ignored="false" />
     <file path="$PROJECT_DIR$/src/test/java/com/mulesoft/api/apiModuleTest.java" changelist="dd4eef7c-4c16-43c7-97dd-8e0860d17af9" time="1366293874322" ignored="false" />
+    <file path="$PROJECT_DIR$/../../ion/cloudhub-mule-services/.idea/workspace.xml" changelist="dd4eef7c-4c16-43c7-97dd-8e0860d17af9" time="1366293918867" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +69,7 @@
       <file leaf-file-name="ApiModule.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mulesoft/api/ApiModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="45" selection-start="611" selection-end="623" vertical-scroll-proportion="0.11363637">
+            <state line="48" column="4" selection-start="1065" selection-end="1065" vertical-scroll-proportion="0.84090906">
               <folding />
             </state>
           </provider>
@@ -409,7 +410,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mulesoft/api/ApiModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="45" selection-start="611" selection-end="623" vertical-scroll-proportion="0.11363637">
+        <state line="48" column="4" selection-start="1065" selection-end="1065" vertical-scroll-proportion="0.84090906">
           <folding />
         </state>
       </provider>
