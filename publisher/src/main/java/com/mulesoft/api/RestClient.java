@@ -27,7 +27,7 @@ public class RestClient
 
             MavenProject mavenProject = metadata.getMavenProject();
             WebResource webResource = client
-                    .resource("http://172.16.20.128:9090/packages").path(mavenProject.getGroupId())
+                    .resource("http://hackathon-mule-repository.herokuapp.com/api/packages").path(mavenProject.getGroupId())
                                       .path(mavenProject.getArtifactId())
                                       .path(mavenProject.getVersion());
 

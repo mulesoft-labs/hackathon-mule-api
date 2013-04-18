@@ -34,6 +34,16 @@ public class ApiModule
     MuleContext context;
 
 
+    /**
+     * <p>
+     *     This executes a lib flow
+     * </p>
+     * @param flow The name of the flow
+     * @param properties The flow inbound properties
+     * @param event The event
+     * @return The event
+     * @throws Exception in case of failure
+     */
     @Processor
     @Inject
     public MuleEvent execute(String flow, Map<String, Object> properties, MuleEvent event) throws Exception

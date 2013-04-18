@@ -21,12 +21,13 @@ public class Publisher
 
     public static void main(String[] args) throws Exception
     {
+        // Complete the username, password and docs folder
         publish(new GithubConfiguration("https://github.com/fernandofederico1984/doc-test",
-                                        "fernandofederico1984",
+                                        "",
                                         "",
                                         ""),
-                new ApiMetadata("This is a test app", "https://fernandofederico1984.github.io/doc-test","the App name",
-                                new MavenProject("org.mule.api", "my-test-api", "1.0-SNAPSHOT")));
+                new ApiMetadata("This is a test app", "http://fernandofederico1984.github.io/doc-test","the App name",
+                                new MavenProject("org.mule.api", "my-test-api", "1.1")));
     }
 
 }
