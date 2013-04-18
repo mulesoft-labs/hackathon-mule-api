@@ -1,9 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-        "http://www.w3.org/TR/html4/strict.dtd">
+<!doctype html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
     <title>flowLib</title>
 
     <link rel="icon" type="image/ico" href="img/flowLib-icon.png">
@@ -51,7 +48,7 @@
             background-color: #f6f6f6;
             max-width: 700px;
             border-radius: 10px;
-            margin: 10px auto 0 auto;
+            margin: 10px auto 1em auto;
             padding-bottom: 2em;
             padding-top: 0.5em;
         }
@@ -90,18 +87,16 @@
         #footer-text{
             text-align: center;
         }
+
+        .noresults {
+            color: #016C96;
+            text-align: center;
+            font-size: 120%;
+        }
     </style>
-
-    <!-- Javascript -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/flowlib.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
+<!--div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -111,18 +106,18 @@
             </button>
             <a class="brand" href="#">flowLib</a>
             <div class="nav-collapse collapse">
-                <ul class="nav">
+                <ul class="nav"-->
                     <!--<li class="active"><a href="#about">About</a></li>-->
                     <!--<li><a href="#howItWorks">Download a flow</a></li>-->
                     <!--<li><a href="#howItWorks">In the near future...</a></li>-->
                     <!--<li><a href="#howItWorks">Source code &amp; contributions</a></li>-->
                     <!--<li><a href="#howItWorks">Further reading</a></li>-->
-                </ul>
-            </div><!--/.nav-collapse -->
+                <!--/ul-->
+            <!-- /div></.nav-collapse>
         </div>
     </div>
 </div>
-<br><br>
+<br><br -->
 <div class="container-narrow">
 
     <div class="jumbotron">
@@ -143,34 +138,47 @@
 
     <div id="results title"></div>
 
-    <div class="results">
-        <script id="entry-template" type="text/x-handlebars-template">
+    <div class="results"></div>
+</div>
+
+
+<script id="entry-template" type="text/x-handlebars-template">
+    {{#if items}}
         {{#each items}}
         <div class="result">
-        <h3 class="flowName">{{name}}</h3>
-        <dl class="dl-horizontal">
-            <dt>Version</dt>
-            <dd>{{version}}</dd>
-            <dt>Description</dt>
-            <dd>{{description}}</dd>
-            <dt>Author</dt>
-            <dd>{{author}}</dd>
-            <dt>Documentation</dt>
-            <dd>{{docsurl}}</dd>
-        </dl>
-        <pre class="mavenDependency">
-            &lt;dependency&gt;
-                &lt;groupId&gt;{{groupid}}&lt;/groupId&gt;
-                &lt;artifactId&gt;{{artifactid}}&lt;/artifactId&gt;
-                &lt;version&gt;{{version}}&lt;/version&gt;
-             &lt;/dependency&gt;
-        </pre>
+            <h3 class="flowName">{{name}}</h3>
+            <dl class="dl-horizontal">
+                <dt>Version</dt>
+                <dd>{{version}}</dd>
+                <dt>Description</dt>
+                <dd>{{description}}</dd>
+                {{#if author}}
+                <dt>Author</dt>
+                <dd>{{author}}</dd>
+                {{/if}}
+                <dt>Documentation</dt>
+                <dd><a href="{{docsurl}}">{{docsurl}}</a></dd>
+            </dl>
+            <pre class="mavenDependency">
+                &lt;dependency&gt;
+                    &lt;groupId&gt;{{groupid}}&lt;/groupId&gt;
+                    &lt;artifactId&gt;{{artifactid}}&lt;/artifactId&gt;
+                    &lt;version&gt;{{version}}&lt;/version&gt;
+                 &lt;/dependency&gt;
+            </pre>
         </div>
-        <br/>
         {{/each}}
-    </script>
-    </div>
-</div>
+    {{else}}
+        <div class="noresults">No packages matching <span>"{{query}}"</span></div>
+
+    {{/if}}
+</script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/handlebars.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/flowlib.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 </body>
 </html>

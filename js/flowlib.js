@@ -1,5 +1,5 @@
 $(function () {
-    var source   = $("#entry-template").html();
+    var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
     var $results = $('.results'),
         $searchButton = $('#search button'),
@@ -7,14 +7,14 @@ $(function () {
 
     var packagesResourceUrl = 'http://hackathon-mule-repository.herokuapp.com/api/packages';
 
-    function displayPackages(data) {
-        $results.html(template({items: data}));
+    function displayPackages( data, query ) {
+        $results.html(template({items: data, query: query}));
     }
 
-    function findPackages(query){
+    function findPackages( query ) {
         var url = packagesResourceUrl;
 
-        if (query) {
+        if ( query ) {
             url += '?q=' + encodeURIComponent(query);
         }
 
@@ -22,14 +22,16 @@ $(function () {
     }
 
 
-    //findPackages().then(displayPackages);
-    $searchQuery.keydown(function (evt) {
-        if (evt.keyCode === 13) {
+    $searchQuery.keydown(function ( evt ) {
+        if ( evt.keyCode === 13 ) {
             $searchButton.click();
         }
     });
     $searchButton.click(function () {
-        findPackages($searchQuery.val()).then(displayPackages);
+        var query = $searchQuery.val();
+        findPackages(query).then(function (data) {
+            displayPackages(data, query);
+        });
     });
 });
 
