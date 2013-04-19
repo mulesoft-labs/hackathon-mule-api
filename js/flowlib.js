@@ -26,7 +26,7 @@ $(function () {
         if ( evt.keyCode === 13 ) {
             $searchButton.click();
         }
-    });
+    }).focus();
     $searchButton.click(function () {
         var query = $searchQuery.val();
         findPackages(query).then(function (data) {
